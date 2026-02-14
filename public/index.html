@@ -961,10 +961,81 @@
     border-top: 1px solid var(--light-gray);
   }
   footer .logo { font-size: 1.1rem; display: inline-block; margin-bottom: 0.75rem; }
-  footer p {
+  footer > p {
     font-size: 0.85rem;
     color: var(--warm-gray);
     opacity: 0.7;
+  }
+  .footer-signup {
+    margin: 1.5rem auto 1.5rem;
+    max-width: 420px;
+  }
+  .footer-signup p {
+    font-size: 0.95rem;
+    color: var(--warm-gray);
+    margin-bottom: 0.75rem;
+  }
+  .footer-email-form {
+    display: flex;
+    gap: 0.5rem;
+  }
+  .footer-email-form input {
+    flex: 1;
+    padding: 0.75rem 1.25rem;
+    border-radius: 100px;
+    border: 1px solid var(--light-gray);
+    background: var(--white);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .footer-email-form input:focus { border-color: var(--coral); }
+  .footer-email-form input::placeholder { color: #B0A8C0; }
+  .footer-email-form button {
+    padding: 0.75rem 1.5rem;
+    border-radius: 100px;
+    border: none;
+    background: var(--coral);
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .footer-email-form button:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(255,107,74,0.3); }
+  .footer-email-form button:disabled { opacity: 0.6; cursor: not-allowed; transform: none !important; }
+  .footer-form-success {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    border-radius: 100px;
+    background: var(--teal-light);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--teal-dark);
+  }
+  .footer-form-success svg { width: 20px; height: 20px; color: var(--teal); flex-shrink: 0; }
+  .footer-form-error {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1rem;
+    border-radius: 100px;
+    background: #FDECEA;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #C0392B;
+    margin-top: 0.5rem;
+  }
+  @media (max-width: 500px) {
+    .footer-email-form { flex-direction: column; }
+    .footer-email-form button { width: 100%; }
   }
 
   /* === ANIMATIONS === */
@@ -1234,6 +1305,18 @@
 <!-- FOOTER -->
 <footer>
   <a href="#" class="logo">Swipe<span>For</span>Cause</a>
+  <div class="footer-signup">
+    <p>Join the waitlist before we launch.</p>
+    <form class="footer-email-form" data-type="volunteer" onsubmit="handleSignup(event)">
+      <input type="email" placeholder="Your email address" required aria-label="Email address for waitlist">
+      <button type="submit">Join Waitlist</button>
+    </form>
+    <div class="footer-form-success" id="success-footer">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+      You're on the list!
+    </div>
+    <div class="footer-form-error" id="error-footer">Something went wrong. Please try again.</div>
+  </div>
   <p>&copy; 2026 SwipeForCause. Making volunteering effortless.</p>
 </footer>
 
@@ -1271,9 +1354,10 @@
     const button = form.querySelector('button');
     const card = form.closest('.signup-card');
     const isHero = form.closest('.hero-form-wrap');
+    const isFooter = form.closest('.footer-signup');
 
     // Determine success/error elements based on context
-    const suffix = isHero ? 'hero' : type;
+    const suffix = isHero ? 'hero' : isFooter ? 'footer' : type;
     const errorEl = document.getElementById(`error-${suffix}`);
     const successEl = document.getElementById(`success-${suffix}`);
 
@@ -1302,6 +1386,9 @@
       if (isHero) {
         const npLink = isHero.querySelector('.hero-nonprofit-link');
         if (npLink) npLink.style.display = 'none';
+      } else if (isFooter) {
+        const footerP = isFooter.querySelector('p');
+        if (footerP) footerP.style.display = 'none';
       } else if (card) {
         const note = card.querySelector('.form-note');
         if (note) note.style.display = 'none';
@@ -1309,7 +1396,7 @@
     } catch (err) {
       errorEl.style.display = 'flex';
       button.disabled = false;
-      button.textContent = isHero ? 'Join Waitlist' : (type === 'volunteer' ? 'Join Waitlist' : 'Join as Nonprofit');
+      button.textContent = (isHero || isFooter) ? 'Join Waitlist' : (type === 'volunteer' ? 'Join Waitlist' : 'Join as Nonprofit');
     }
   }
 </script>
