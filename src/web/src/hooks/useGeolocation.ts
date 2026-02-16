@@ -30,7 +30,7 @@ export function useGeolocation(): UseGeolocationReturn {
           const { latitude, longitude } = position.coords;
           const response = await fetch(
             `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=10&addressdetails=1`,
-            { headers: { 'User-Agent': 'SwipeForCause/1.0' } },
+            { headers: { 'User-Agent': 'ScrollForCause/1.0' } },
           );
           if (!response.ok) {
             throw new Error(`Geocoding failed: ${response.status}`);

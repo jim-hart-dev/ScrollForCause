@@ -1,8 +1,8 @@
-# SwipeForCause — Go-to-Market Playbook
+# ScrollForCause — Go-to-Market Playbook
 
 ## The Cold Start Problem
 
-SwipeForCause is a two-sided marketplace. Volunteers won't come without content. Nonprofits won't post without volunteers. Solving this chicken-and-egg problem is the single most important pre-launch challenge.
+ScrollForCause is a two-sided marketplace. Volunteers won't come without content. Nonprofits won't post without volunteers. Solving this chicken-and-egg problem is the single most important pre-launch challenge.
 
 **Strategy: Supply first, then demand.**
 
@@ -24,7 +24,7 @@ Recruit nonprofits first. Get them posting content. Then open the doors to volun
 - LinkedIn outreach to nonprofit program managers
 
 **Pitch (keep it simple):**
-> "We're launching SwipeForCause — a free platform that helps nonprofits recruit volunteers through short videos. Think TikTok for volunteer recruitment. We're inviting 50 founding organizations to join before our public launch. You'll get early access, setup support, and priority placement in our feed. Interested?"
+> "We're launching ScrollForCause — a free platform that helps nonprofits recruit volunteers through short videos. Think TikTok for volunteer recruitment. We're inviting 50 founding organizations to join before our public launch. You'll get early access, setup support, and priority placement in our feed. Interested?"
 
 **Founding org perks:**
 - "Founding Organization" badge on profile (permanent)
@@ -39,7 +39,7 @@ Recruit nonprofits first. Get them posting content. Then open the doors to volun
 Most nonprofits have never created short-form video for a platform like this. Provide hands-on support:
 
 **Content creation kit (email + PDF):**
-- Quick start guide: "Create your first SwipeForCause post in 10 minutes"
+- Quick start guide: "Create your first ScrollForCause post in 10 minutes"
 - Video filming tips (lighting, framing, audio, vertical format)
 - 5 post templates/ideas:
   1. "Day in the life" — show a typical volunteer session
@@ -81,7 +81,7 @@ Month 2-3: Open registration nationally, continue targeted city-by-city nonprofi
 - Instagram, TikTok, Twitter/X posts announcing the launch
 - Short demo video showing the scroll experience
 - Partner orgs share launch announcement on their channels (coordinated day)
-- Hashtag: #SwipeForCause
+- Hashtag: #ScrollForCause
 
 **Local press:**
 - Press release to Charleston-area media
@@ -102,10 +102,10 @@ Month 2-3: Open registration nationally, continue targeted city-by-city nonprofi
 ### Launch Messaging
 
 **For volunteers:**
-> "Find your next volunteer opportunity in 30 seconds. SwipeForCause is a free app where you scroll through short videos from local nonprofits and sign up to help with a single tap."
+> "Find your next volunteer opportunity in 30 seconds. ScrollForCause is a free app where you scroll through short videos from local nonprofits and sign up to help with a single tap."
 
 **For nonprofits:**
-> "Recruit volunteers with the power of short-form video. SwipeForCause is a free platform where your organization's story reaches people who want to help. Create a post, share your mission, and connect with motivated volunteers."
+> "Recruit volunteers with the power of short-form video. ScrollForCause is a free platform where your organization's story reaches people who want to help. Create a post, share your mission, and connect with motivated volunteers."
 
 ---
 
@@ -115,17 +115,17 @@ Month 2-3: Open registration nationally, continue targeted city-by-city nonprofi
 
 **Organic growth loops:**
 - "Share this opportunity" feature on each post (generates link with post preview)
-- "I volunteered with [Org] through SwipeForCause" shareable badge/story after completing a volunteer session
+- "I volunteered with [Org] through ScrollForCause" shareable badge/story after completing a volunteer session
 - SEO: org profile pages and opportunity pages are publicly indexable, targeting "[city] volunteer opportunities" keywords
 
 **Partnerships:**
-- College volunteer coordinators (offer SwipeForCause as a tool for finding opportunities)
+- College volunteer coordinators (offer ScrollForCause as a tool for finding opportunities)
 - Corporate social responsibility programs (companies looking for team volunteer activities)
 - Local government volunteer portals (cross-link)
 
 **Content marketing:**
 - Blog: "Top 10 volunteer opportunities in [City] this month"
-- Social: Repurpose best org videos as SwipeForCause social content (with permission)
+- Social: Repurpose best org videos as ScrollForCause social content (with permission)
 - Email: Weekly "Volunteer Spotlight" newsletter featuring top opportunities
 
 ### Nonprofit Acquisition

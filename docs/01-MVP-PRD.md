@@ -1,14 +1,14 @@
-# SwipeForCause — MVP Product Requirements Document
+# ScrollForCause — MVP Product Requirements Document
 
 ## Document Purpose
 
-This PRD defines the complete feature set for the SwipeForCause MVP. It serves as the source of truth for what gets built in the first release. Features are organized by priority and grouped into epics.
+This PRD defines the complete feature set for the ScrollForCause MVP. It serves as the source of truth for what gets built in the first release. Features are organized by priority and grouped into epics.
 
 ---
 
 ## User Types
 
-SwipeForCause has two distinct user types with separate registration flows, permissions, and experiences.
+ScrollForCause has two distinct user types with separate registration flows, permissions, and experiences.
 
 ### Volunteer
 

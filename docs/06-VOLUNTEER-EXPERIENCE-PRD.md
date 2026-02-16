@@ -1,8 +1,8 @@
-# SwipeForCause — Volunteer Experience PRD
+# ScrollForCause — Volunteer Experience PRD
 
 ## Overview
 
-The volunteer experience is the consumer side of SwipeForCause. It needs to feel as effortless and engaging as scrolling TikTok — with the added satisfaction of discovering meaningful ways to give back. Every design decision should minimize friction between "that looks interesting" and "I'm signed up."
+The volunteer experience is the consumer side of ScrollForCause. It needs to feel as effortless and engaging as scrolling TikTok — with the added satisfaction of discovering meaningful ways to give back. Every design decision should minimize friction between "that looks interesting" and "I'm signed up."
 
 ---
 

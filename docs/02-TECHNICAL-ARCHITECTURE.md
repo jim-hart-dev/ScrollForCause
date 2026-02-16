@@ -1,8 +1,8 @@
-# SwipeForCause — Technical Architecture
+# ScrollForCause — Technical Architecture
 
 ## Architecture Overview
 
-SwipeForCause follows Jim's standard architecture patterns: C# Web API with vertical slice architecture, React TypeScript frontend, PostgreSQL database, Clerk authentication, and Azure hosting.
+ScrollForCause follows Jim's standard architecture patterns: C# Web API with vertical slice architecture, React TypeScript frontend, PostgreSQL database, Clerk authentication, and Azure hosting.
 
 ```
 ┌──────────────────────────────────────────────────┐
@@ -42,7 +42,7 @@ Each feature is a self-contained slice with its own request, response, handler, 
 
 ```
 src/
-├── SwipeForCause.Api/
+├── ScrollForCause.Api/
 │   ├── Program.cs
 │   ├── appsettings.json
 │   │
@@ -231,7 +231,7 @@ Upload Flow:
 
 **Azure Blob Storage structure:**
 ```
-swipeforcause-media/
+scrollforcause-media/
 ├── uploads/          # Raw uploads (temporary)
 ├── videos/
 │   ├── {id}/

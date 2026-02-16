@@ -1,9 +1,9 @@
-# SwipeForCause — API Endpoints
+# ScrollForCause — API Endpoints
 
 ## Base URL
 
 ```
-Production:  https://api.swipeforcause.com/api/v1
+Production:  https://api.scrollforcause.com/api/v1
 Development: https://localhost:5001/api/v1
 ```
 
@@ -73,9 +73,9 @@ Returns paginated feed items for the authenticated volunteer.
             "media": [
                 {
                     "mediaId": "uuid",
-                    "url": "https://cdn.swipeforcause.com/videos/abc/720p.mp4",
-                    "thumbnailUrl": "https://cdn.swipeforcause.com/videos/abc/thumbnail.jpg",
-                    "lowResUrl": "https://cdn.swipeforcause.com/videos/abc/360p.mp4",
+                    "url": "https://cdn.scrollforcause.com/videos/abc/720p.mp4",
+                    "thumbnailUrl": "https://cdn.scrollforcause.com/videos/abc/thumbnail.jpg",
+                    "lowResUrl": "https://cdn.scrollforcause.com/videos/abc/360p.mp4",
                     "type": "video",
                     "durationSeconds": 45,
                     "width": 1080,
@@ -85,7 +85,7 @@ Returns paginated feed items for the authenticated volunteer.
             "organization": {
                 "organizationId": "uuid",
                 "name": "Charleston Waterkeeper",
-                "logoUrl": "https://cdn.swipeforcause.com/logos/xyz.jpg",
+                "logoUrl": "https://cdn.scrollforcause.com/logos/xyz.jpg",
                 "isVerified": true
             },
             "opportunity": {
@@ -358,7 +358,7 @@ Note: Media is uploaded separately first via the media upload flow. `mediaIds` r
 ```json
 {
     "data": {
-        "uploadUrl": "https://swipeforcause.blob.core.windows.net/uploads/...",
+        "uploadUrl": "https://scrollforcause.blob.core.windows.net/uploads/...",
         "mediaId": "uuid",
         "expiresAt": "2026-02-13T11:00:00Z"
     }

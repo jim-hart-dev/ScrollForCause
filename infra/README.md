@@ -1,4 +1,4 @@
-# SwipeForCause — Azure Infrastructure
+# ScrollForCause — Azure Infrastructure
 
 Bicep templates that provision the dev/prototype stack using a modular architecture.
 

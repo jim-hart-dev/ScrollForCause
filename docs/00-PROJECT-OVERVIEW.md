@@ -1,8 +1,8 @@
-# SwipeForCause — Project Overview
+# ScrollForCause — Project Overview
 
 ## Vision Statement
 
-SwipeForCause is a volunteer marketplace that connects people who want to give their time with nonprofits that need help — through the language of short-form video. Think TikTok, but every scroll brings you face-to-face with a cause worth your time.
+ScrollForCause is a volunteer marketplace that connects people who want to give their time with nonprofits that need help — through the language of short-form video. Think TikTok, but every scroll brings you face-to-face with a cause worth your time.
 
 ## The Problem
 
@@ -16,7 +16,7 @@ Volunteering is broken from both sides:
 
 ## The Solution
 
-SwipeForCause gives nonprofits the tools to create compelling short-form video and image content that showcases their volunteer needs, and gives potential volunteers a fast, engaging way to discover and commit to opportunities.
+ScrollForCause gives nonprofits the tools to create compelling short-form video and image content that showcases their volunteer needs, and gives potential volunteers a fast, engaging way to discover and commit to opportunities.
 
 ### Core Experience
 

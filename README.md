@@ -1,4 +1,4 @@
-# 📋 SwipeForCause — Documentation Index
+# 📋 ScrollForCause — Documentation Index
 
 > **TikTok for Volunteering** — A short-form video marketplace connecting volunteers with nonprofits.
 

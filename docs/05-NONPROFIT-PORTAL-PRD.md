@@ -1,8 +1,8 @@
-# SwipeForCause — Nonprofit Portal PRD
+# ScrollForCause — Nonprofit Portal PRD
 
 ## Overview
 
-The Nonprofit Portal is the org-facing side of SwipeForCause. It's where nonprofits register, create content, manage volunteer opportunities, and handle incoming volunteer interest. The portal must be simple enough that a non-technical program manager can use it without training.
+The Nonprofit Portal is the org-facing side of ScrollForCause. It's where nonprofits register, create content, manage volunteer opportunities, and handle incoming volunteer interest. The portal must be simple enough that a non-technical program manager can use it without training.
 
 ---
 
@@ -59,7 +59,7 @@ Each item links directly to the relevant action. Checklist dismisses after all i
 
 ## Dashboard
 
-The dashboard is the org's home screen after login. It provides an at-a-glance view of their SwipeForCause presence.
+The dashboard is the org's home screen after login. It provides an at-a-glance view of their ScrollForCause presence.
 
 ### Dashboard Layout
 
@@ -207,7 +207,7 @@ When an org clicks on a volunteer's name, they see:
 - Display name, avatar, city/state
 - Bio
 - Interest categories
-- Number of interest expressions made on SwipeForCause (social proof)
+- Number of interest expressions made on ScrollForCause (social proof)
 - Note: orgs do NOT see the volunteer's email until they accept the interest (privacy protection)
 
 ### After Accepting

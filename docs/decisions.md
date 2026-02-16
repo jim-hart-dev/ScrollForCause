@@ -1,6 +1,6 @@
 # Decision Log
 
-Major architectural and workflow decisions for the SwipeForCause project.
+Major architectural and workflow decisions for the ScrollForCause project.
 
 | # | Date | Decision | Context | Alternatives Considered |
 |---|------|----------|---------|------------------------|

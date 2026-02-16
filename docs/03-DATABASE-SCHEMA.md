@@ -1,4 +1,4 @@
-# SwipeForCause — Database Schema Design
+# ScrollForCause — Database Schema Design
 
 ## Overview
 

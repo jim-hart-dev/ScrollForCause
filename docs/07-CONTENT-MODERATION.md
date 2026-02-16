@@ -1,8 +1,8 @@
-# SwipeForCause — Content & Moderation Strategy
+# ScrollForCause — Content & Moderation Strategy
 
 ## Overview
 
-SwipeForCause has a unique advantage over general social media platforms: the content model is constrained. Only verified nonprofits can post content, and all content is related to volunteer recruitment. This dramatically reduces the surface area for abuse, but moderation is still essential for trust and safety.
+ScrollForCause has a unique advantage over general social media platforms: the content model is constrained. Only verified nonprofits can post content, and all content is related to volunteer recruitment. This dramatically reduces the surface area for abuse, but moderation is still essential for trust and safety.
 
 ---
 

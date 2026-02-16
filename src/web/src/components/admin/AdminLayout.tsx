@@ -6,7 +6,7 @@ export default function AdminLayout() {
       <nav className="border-b border-gray-200 bg-navy px-6 py-4">
         <div className="mx-auto flex max-w-7xl items-center justify-between">
           <Link to="/admin/organizations" className="font-display text-xl text-white">
-            SwipeForCause Admin
+            ScrollForCause Admin
           </Link>
           <div className="flex items-center gap-6">
             <Link

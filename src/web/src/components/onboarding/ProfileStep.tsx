@@ -33,7 +33,7 @@ export default function ProfileStep({ onSubmit }: ProfileStepProps) {
   return (
     <form onSubmit={handleSubmit} className="w-full max-w-sm mx-auto">
       <h1 className="font-display text-2xl text-navy text-center mb-2">
-        Welcome to SwipeForCause
+        Welcome to ScrollForCause
       </h1>
       <p className="font-body text-navy/60 text-center text-sm mb-6">
         Tell us a bit about yourself
