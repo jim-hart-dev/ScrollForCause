@@ -81,7 +81,7 @@ app.MapHealthChecks("/health");
 app.MapGetMe();
 app.MapRegisterVolunteer();
 app.MapGetCategories();
-app.MapListPendingOrganizations();
+app.MapListOrganizations();
 app.MapGetOrganizationDetail();
 app.MapVerifyOrganization();
 

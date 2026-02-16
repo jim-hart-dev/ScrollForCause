@@ -1,28 +1,13 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAdminOrganizations } from '../hooks/useAdminOrganizations';
+import StatusBadge from '../components/admin/StatusBadge';
 
 const STATUS_TABS = [
   { label: 'Pending', value: 'pending' },
   { label: 'Verified', value: 'verified' },
   { label: 'Rejected', value: 'rejected' },
 ] as const;
-
-function StatusBadge({ status }: { status: string }) {
-  const colors: Record<string, string> = {
-    pending: 'bg-yellow-100 text-yellow-800',
-    verified: 'bg-green-100 text-green-800',
-    rejected: 'bg-red-100 text-red-800',
-  };
-
-  return (
-    <span
-      className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${colors[status] ?? 'bg-gray-100 text-gray-800'}`}
-    >
-      {status}
-    </span>
-  );
-}
 
 export default function AdminOrganizationsPage() {
   const [activeStatus, setActiveStatus] = useState('pending');

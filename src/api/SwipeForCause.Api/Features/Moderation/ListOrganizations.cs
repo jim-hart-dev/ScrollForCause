@@ -16,9 +16,9 @@ public record AdminOrganizationResponse(
     DateTime CreatedAt,
     string? LogoUrl);
 
-public static class ListPendingOrganizations
+public static class ListOrganizations
 {
-    public static void MapListPendingOrganizations(this WebApplication app)
+    public static void MapListOrganizations(this WebApplication app)
     {
         app.MapGet("/api/v1/admin/organizations", async (
             string? status,
@@ -71,6 +71,6 @@ public static class ListPendingOrganizations
         })
         .RequireAuthorization("Admin")
         .WithTags("Admin")
-        .WithName("ListPendingOrganizations");
+        .WithName("ListOrganizations");
     }
 }

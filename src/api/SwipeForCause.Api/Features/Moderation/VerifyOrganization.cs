@@ -78,15 +78,23 @@ public static class VerifyOrganization
             if (request.Status == "verified")
             {
                 org.VerifiedAt = DateTime.UtcNow;
-                await emailService.SendVerificationApprovedAsync(org.ContactEmail, org.Name);
             }
             else
             {
                 org.VerifiedAt = null;
-                await emailService.SendVerificationRejectedAsync(org.ContactEmail, org.Name, request.Reason!);
             }
 
             await db.SaveChangesAsync();
+
+            // Send email after successful DB save to avoid notifying on failed updates
+            if (request.Status == "verified")
+            {
+                await emailService.SendVerificationApprovedAsync(org.ContactEmail, org.Name);
+            }
+            else
+            {
+                await emailService.SendVerificationRejectedAsync(org.ContactEmail, org.Name, request.Reason!);
+            }
 
             return Results.Ok(new VerifyOrganizationResponse(
                 org.Id,

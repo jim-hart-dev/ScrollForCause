@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { SignIn, SignUp } from '@clerk/clerk-react';
 import ProtectedRoute from '../components/auth/ProtectedRoute';
+import AdminRoute from '../components/auth/AdminRoute';
 import VolunteerRegisterPage from '../pages/VolunteerRegisterPage';
 import AdminLayout from '../components/admin/AdminLayout';
 import AdminOrganizationsPage from '../pages/AdminOrganizationsPage';
@@ -63,7 +64,7 @@ export const router = createBrowserRouter([
 
   // Admin routes
   {
-    element: <ProtectedRoute />,
+    element: <AdminRoute />,
     children: [
       {
         element: <AdminLayout />,
