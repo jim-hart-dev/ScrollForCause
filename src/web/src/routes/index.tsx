@@ -29,9 +29,9 @@ export const router = createBrowserRouter([
   { path: '/explore', element: <PlaceholderPage title="Explore" /> },
   { path: '/org/:id', element: <PlaceholderPage title="Organization" /> },
 
-  // Auth routes
+  // Auth routes — wildcard paths let Clerk handle sub-routes (sso-callback, verify, etc.)
   {
-    path: '/login',
+    path: '/login/*',
     element: (
       <AuthPage>
         <SignIn routing="path" path="/login" signUpUrl="/register/volunteer" />
@@ -39,11 +39,11 @@ export const router = createBrowserRouter([
     ),
   },
   {
-    path: '/register/volunteer',
+    path: '/register/volunteer/*',
     element: <VolunteerRegisterPage />,
   },
   {
-    path: '/register/organization',
+    path: '/register/organization/*',
     element: (
       <AuthPage>
         <SignUp routing="path" path="/register/organization" signInUrl="/login" />
