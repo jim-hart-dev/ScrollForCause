@@ -5,6 +5,7 @@ using SwipeForCause.Api.Database;
 using SwipeForCause.Api.Features.Auth;
 using SwipeForCause.Api.Features.Categories;
 using SwipeForCause.Api.Features.Moderation;
+using SwipeForCause.Api.Features.Organizations;
 using SwipeForCause.Api.Features.Volunteers;
 using SwipeForCause.Api.Infrastructure.Auth;
 using SwipeForCause.Api.Infrastructure.Email;
@@ -84,6 +85,7 @@ app.MapGetCategories();
 app.MapListOrganizations();
 app.MapGetOrganizationDetail();
 app.MapVerifyOrganization();
+app.MapGetOrganizationDashboard();
 
 app.Run();
 

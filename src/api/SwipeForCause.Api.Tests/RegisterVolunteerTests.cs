@@ -18,6 +18,7 @@ public class TestAuthHandler : AuthenticationHandler<AuthenticationSchemeOptions
 {
     public static string? ClerkUserId { get; set; } = "user_test123";
     public static string? UserType { get; set; }
+    public static string? ProfileId { get; set; }
 
     public TestAuthHandler(
         IOptionsMonitor<AuthenticationSchemeOptions> options,
@@ -43,11 +44,23 @@ public class TestAuthHandler : AuthenticationHandler<AuthenticationSchemeOptions
             claims.Add(new Claim("user_type", UserType));
         }
 
+        if (ProfileId is not null)
+        {
+            claims.Add(new Claim("profile_id", ProfileId));
+        }
+
         var identity = new ClaimsIdentity(claims, "TestScheme");
         var principal = new ClaimsPrincipal(identity);
         var ticket = new AuthenticationTicket(principal, "TestScheme");
 
         return Task.FromResult(AuthenticateResult.Success(ticket));
+    }
+
+    public static void Reset()
+    {
+        ClerkUserId = "user_test123";
+        UserType = null;
+        ProfileId = null;
     }
 }
 
@@ -81,15 +94,13 @@ public class RegisterVolunteerTests : IClassFixture<WebApplicationFactory<Progra
         });
 
         // Reset auth state for each test
-        TestAuthHandler.ClerkUserId = "user_test123";
-        TestAuthHandler.UserType = null;
+        TestAuthHandler.Reset();
     }
 
     public void Dispose()
     {
         // Reset static state
-        TestAuthHandler.ClerkUserId = "user_test123";
-        TestAuthHandler.UserType = null;
+        TestAuthHandler.Reset();
     }
 
     private HttpClient CreateClient() => _factory.CreateClient();

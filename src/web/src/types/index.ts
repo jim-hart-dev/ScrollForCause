@@ -118,3 +118,42 @@ export interface VerifyOrganizationResponse {
   verifiedAt: string | null;
   updatedAt: string;
 }
+
+export interface OrgDashboardStats {
+  newInterestCount: number;
+  activeOpportunityCount: number;
+  followerCount: number;
+}
+
+export interface InterestSummary {
+  interestId: string;
+  volunteerName: string;
+  volunteerAvatarUrl: string | null;
+  opportunityTitle: string;
+  status: string;
+  createdAt: string;
+}
+
+export interface PostSummary {
+  postId: string;
+  title: string;
+  thumbnailUrl: string | null;
+  viewCount: number;
+  createdAt: string;
+}
+
+export interface SetupChecklist {
+  hasCoverImage: boolean;
+  hasOpportunity: boolean;
+  hasPost: boolean;
+}
+
+export interface OrgDashboardResponse {
+  organizationId: string;
+  organizationName: string;
+  verificationStatus: 'pending' | 'verified' | 'rejected';
+  stats: OrgDashboardStats | null;
+  recentInterests: InterestSummary[];
+  recentPosts: PostSummary[];
+  setupChecklist: SetupChecklist | null;
+}
