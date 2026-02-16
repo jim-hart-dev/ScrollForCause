@@ -1,4 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
+import { SignIn, SignUp } from '@clerk/clerk-react';
+import ProtectedRoute from '../components/auth/ProtectedRoute';
 
 // Placeholder page components
 function PlaceholderPage({ title }: { title: string }) {
@@ -9,19 +11,53 @@ function PlaceholderPage({ title }: { title: string }) {
   );
 }
 
+function AuthPage({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="flex items-center justify-center min-h-screen bg-cream">{children}</div>
+  );
+}
+
 export const router = createBrowserRouter([
+  // Public routes
   { path: '/', element: <PlaceholderPage title="Feed" /> },
   { path: '/explore', element: <PlaceholderPage title="Explore" /> },
-  { path: '/saved', element: <PlaceholderPage title="Saved Posts" /> },
-  { path: '/profile', element: <PlaceholderPage title="My Profile" /> },
-  { path: '/org/dashboard', element: <PlaceholderPage title="Org Dashboard" /> },
-  { path: '/org/create', element: <PlaceholderPage title="Create Post" /> },
-  { path: '/org/content', element: <PlaceholderPage title="Manage Content" /> },
   { path: '/org/:id', element: <PlaceholderPage title="Organization" /> },
-  { path: '/login', element: <PlaceholderPage title="Login" /> },
-  { path: '/register/volunteer', element: <PlaceholderPage title="Register as Volunteer" /> },
+
+  // Auth routes
+  {
+    path: '/login',
+    element: (
+      <AuthPage>
+        <SignIn routing="path" path="/login" signUpUrl="/register/volunteer" />
+      </AuthPage>
+    ),
+  },
+  {
+    path: '/register/volunteer',
+    element: (
+      <AuthPage>
+        <SignUp routing="path" path="/register/volunteer" signInUrl="/login" />
+      </AuthPage>
+    ),
+  },
   {
     path: '/register/organization',
-    element: <PlaceholderPage title="Register Organization" />,
+    element: (
+      <AuthPage>
+        <SignUp routing="path" path="/register/organization" signInUrl="/login" />
+      </AuthPage>
+    ),
+  },
+
+  // Protected routes
+  {
+    element: <ProtectedRoute />,
+    children: [
+      { path: '/saved', element: <PlaceholderPage title="Saved Posts" /> },
+      { path: '/profile', element: <PlaceholderPage title="My Profile" /> },
+      { path: '/org/dashboard', element: <PlaceholderPage title="Org Dashboard" /> },
+      { path: '/org/create', element: <PlaceholderPage title="Create Post" /> },
+      { path: '/org/content', element: <PlaceholderPage title="Manage Content" /> },
+    ],
   },
 ]);
