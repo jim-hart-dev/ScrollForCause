@@ -19,7 +19,7 @@ targetScope = 'resourceGroup'
 param environment string = 'prod'
 
 @description('Azure region for all resources.')
-param location string = 'eastus'
+param location string = 'eastus2'
 
 @secure()
 @description('Administrator password for the PostgreSQL server.')

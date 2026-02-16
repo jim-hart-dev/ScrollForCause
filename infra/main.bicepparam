@@ -5,7 +5,7 @@ using './main.bicep'
 // =============================================================================
 
 param environment = 'prod'
-param location = 'eastus'
+param location = 'eastus2'
 
 // Secure values — pass via CLI or replace placeholders before deploying.
 // NEVER commit real secrets to source control.

@@ -5,8 +5,8 @@
 @description('Deployment environment.')
 param environment string
 
-@description('Azure region.')
-param location string
+@description('Azure region (Static Web Apps has limited region availability).')
+param location string = 'eastus2'
 
 @description('Resource tags.')
 param tags object
