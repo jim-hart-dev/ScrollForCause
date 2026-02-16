@@ -1,6 +1,6 @@
 # SwipeForCause — Azure Infrastructure
 
-Bicep templates that provision the full MVP stack using a modular architecture.
+Bicep templates that provision the dev/prototype stack using a modular architecture.
 
 ## File Structure
 
@@ -9,12 +9,10 @@ infra/
 ├── main.bicep              # Orchestration — wires all modules together
 ├── main.bicepparam         # Production parameter file
 ├── modules/
-│   ├── app-service.bicep   # App Service Plan + .NET 8 API + staging slot
+│   ├── app-service.bicep   # App Service Plan (Free) + .NET 8 API
 │   ├── static-web-app.bicep# Azure Static Web App (React frontend)
 │   ├── postgresql.bicep    # PostgreSQL Flexible Server (v16, B1ms)
-│   ├── storage.bicep       # Blob Storage + 5 containers
-│   ├── cdn.bicep           # CDN profile + endpoint (Standard Microsoft)
-│   └── functions.bicep     # Azure Functions (Consumption, .NET 8 isolated)
+│   └── storage.bicep       # Blob Storage + 5 containers
 └── README.md
 ```
 
@@ -36,17 +34,20 @@ az bicep version
 
 | Resource | SKU / Tier | Naming Pattern |
 |----------|-----------|----------------|
-| App Service Plan | B1 (Linux) | `sfc-plan-{env}` |
+| App Service Plan | F1 Free (Linux) | `sfc-plan-{env}` |
 | App Service (.NET 8 API) | — | `sfc-api-{env}` |
-| App Service Staging Slot | — | `sfc-api-{env}/staging` |
 | Static Web App (React) | Free | `sfc-web-{env}` |
 | PostgreSQL Flexible Server | Burstable B1ms, v16, 32 GB | `sfc-pg-{env}` |
 | Storage Account | Standard_LRS, Hot | `sfcstorage{env}` |
 | Blob Containers | — | uploads, videos, images, avatars, logos |
-| CDN Profile | Standard Microsoft | `sfc-cdn-{env}` |
-| CDN Endpoint | HTTPS only | `sfc-cdn-ep-{env}` |
-| Function App | Y1 Consumption | `sfc-func-{env}` |
-| Function Storage | Standard_LRS | `sfcfuncstor{env}` |
+
+### Not yet provisioned (add when needed)
+
+These resources were deferred to keep prototype costs low:
+
+- **CDN** — add `modules/cdn.bicep` when media delivery needs caching
+- **Azure Functions** — add `modules/functions.bicep` when media processing is built
+- **Staging slot** — upgrade App Service to Standard (S1+) tier first
 
 ## Deployment
 
@@ -126,25 +127,23 @@ az deployment group create \
   --parameters environment=staging postgresAdminPassword='...'
 ```
 
-## Estimated Monthly Cost (MVP)
+## Estimated Monthly Cost (Prototype)
 
 | Resource | SKU | Est. Monthly Cost |
 |----------|-----|-------------------|
-| App Service Plan (B1) | 1 core, 1.75 GB RAM | ~$13 |
+| App Service Plan (F1) | Free tier, 60 CPU-min/day | $0 |
 | PostgreSQL Flexible (B1ms) | 1 vCore, 2 GB RAM, 32 GB storage | ~$15 |
-| Storage Account (Standard LRS) | Pay per use | ~$1–5 |
-| CDN (Standard Microsoft) | Pay per GB transferred | ~$1–5 |
-| Azure Functions (Consumption) | First 1M executions free | ~$0–2 |
+| Storage Account (Standard LRS) | Pay per use | ~$0.01–1 |
 | Static Web App (Free tier) | — | $0 |
-| **Total estimated** | | **~$30–40/month** |
+| **Total estimated** | | **~$15–16/month** |
 
+> Upgrade App Service to B1 (~$13/month) when you need always-on or custom domains.
 > Costs vary by region and usage. See [Azure Pricing Calculator](https://azure.microsoft.com/en-us/pricing/calculator/) for precise estimates.
 
 ## Security Notes
 
 - All traffic is HTTPS / TLS 1.2+ only
 - Blob containers are private — no anonymous access
-- CDN blocks the `uploads` container (raw uploads are never served publicly)
-- App Service and Function App use system-assigned managed identities with Storage Blob Data Contributor role
+- App Service uses a system-assigned managed identity with Storage Blob Data Contributor role
 - PostgreSQL enforces SSL and allows only Azure-internal traffic by default
 - Secrets are passed as `@secure()` Bicep parameters — never committed to source control

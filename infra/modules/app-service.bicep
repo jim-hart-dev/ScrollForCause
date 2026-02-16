@@ -1,5 +1,5 @@
 // =============================================================================
-// Module: App Service — .NET 8 API with staging deployment slot
+// Module: App Service — .NET 8 API (Free tier for dev/prototype)
 // =============================================================================
 
 @description('Deployment environment.')
@@ -17,12 +17,6 @@ param storageAccountName string
 @description('Storage account key.')
 @secure()
 param storageAccountKey string
-
-@description('CDN endpoint hostname.')
-param cdnEndpointHostName string
-
-@description('Function App default hostname.')
-param functionAppHostName string
 
 @description('PostgreSQL FQDN.')
 param postgresHost string
@@ -54,7 +48,7 @@ var appServicePlanName = '${prefix}-plan-${environment}'
 var apiAppName = '${prefix}-api-${environment}'
 
 // ---------------------------------------------------------------------------
-// App Service Plan (B1 Linux)
+// App Service Plan (F1 Free — upgrade to B1 when needed)
 // ---------------------------------------------------------------------------
 
 resource appServicePlan 'Microsoft.Web/serverfarms@2023-12-01' = {
@@ -62,9 +56,8 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2023-12-01' = {
   location: location
   tags: tags
   sku: {
-    name: 'B1'
-    tier: 'Basic'
-    capacity: 1
+    name: 'F1'
+    tier: 'Free'
   }
   kind: 'linux'
   properties: {
@@ -91,54 +84,11 @@ resource apiApp 'Microsoft.Web/sites@2023-12-01' = {
       linuxFxVersion: 'DOTNETCORE|8.0'
       minTlsVersion: '1.2'
       ftpsState: 'Disabled'
-      alwaysOn: true
       appSettings: [
         { name: 'ASPNETCORE_ENVIRONMENT', value: environment == 'prod' ? 'Production' : 'Development' }
         { name: 'Clerk__SecretKey', value: clerkSecretKey }
         { name: 'SendGrid__ApiKey', value: sendGridApiKey }
         { name: 'Storage__ConnectionString', value: 'DefaultEndpointsProtocol=https;AccountName=${storageAccountName};AccountKey=${storageAccountKey};EndpointSuffix=core.windows.net' }
-        { name: 'Storage__CdnBaseUrl', value: 'https://${cdnEndpointHostName}' }
-        { name: 'FunctionApp__BaseUrl', value: 'https://${functionAppHostName}' }
-      ]
-      connectionStrings: [
-        {
-          name: 'DefaultConnection'
-          connectionString: 'Host=${postgresHost};Port=5432;Database=${postgresDbName};Username=${postgresAdminUser};Password=${postgresAdminPassword};SSL Mode=Require;Trust Server Certificate=true'
-          type: 'Custom'
-        }
-      ]
-    }
-  }
-}
-
-// ---------------------------------------------------------------------------
-// Staging deployment slot
-// ---------------------------------------------------------------------------
-
-resource stagingSlot 'Microsoft.Web/sites/slots@2023-12-01' = {
-  parent: apiApp
-  name: 'staging'
-  location: location
-  tags: tags
-  kind: 'app,linux'
-  identity: {
-    type: 'SystemAssigned'
-  }
-  properties: {
-    serverFarmId: appServicePlan.id
-    httpsOnly: true
-    siteConfig: {
-      linuxFxVersion: 'DOTNETCORE|8.0'
-      minTlsVersion: '1.2'
-      ftpsState: 'Disabled'
-      alwaysOn: false
-      appSettings: [
-        { name: 'ASPNETCORE_ENVIRONMENT', value: 'Staging' }
-        { name: 'Clerk__SecretKey', value: clerkSecretKey }
-        { name: 'SendGrid__ApiKey', value: sendGridApiKey }
-        { name: 'Storage__ConnectionString', value: 'DefaultEndpointsProtocol=https;AccountName=${storageAccountName};AccountKey=${storageAccountKey};EndpointSuffix=core.windows.net' }
-        { name: 'Storage__CdnBaseUrl', value: 'https://${cdnEndpointHostName}' }
-        { name: 'FunctionApp__BaseUrl', value: 'https://${functionAppHostName}' }
       ]
       connectionStrings: [
         {
@@ -158,4 +108,3 @@ resource stagingSlot 'Microsoft.Web/sites/slots@2023-12-01' = {
 output apiAppName string = apiApp.name
 output apiUrl string = 'https://${apiApp.properties.defaultHostName}'
 output apiPrincipalId string = apiApp.identity.principalId
-output stagingUrl string = 'https://${stagingSlot.properties.defaultHostName}'

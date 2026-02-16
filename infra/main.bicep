@@ -1,13 +1,11 @@
 // =============================================================================
 // SwipeForCause MVP — Azure Infrastructure (Orchestration)
 // =============================================================================
-// Provisions all Azure resources via modular Bicep templates:
-//   - App Service (.NET 8 API) with staging slot
+// Provisions Azure resources via modular Bicep templates:
+//   - App Service (.NET 8 API, Free tier)
 //   - Static Web App (React frontend)
 //   - PostgreSQL Flexible Server (v16, B1ms)
 //   - Blob Storage with media containers
-//   - CDN (Standard Microsoft, HTTPS only)
-//   - Azure Functions (Consumption, media processing)
 // =============================================================================
 
 targetScope = 'resourceGroup'
@@ -78,34 +76,6 @@ module storage 'modules/storage.bicep' = {
 }
 
 // ---------------------------------------------------------------------------
-// Module: CDN
-// ---------------------------------------------------------------------------
-
-module cdn 'modules/cdn.bicep' = {
-  name: 'cdn-${environment}'
-  params: {
-    environment: environment
-    tags: tags
-    storageAccountName: storage.outputs.storageAccountName
-  }
-}
-
-// ---------------------------------------------------------------------------
-// Module: Functions
-// ---------------------------------------------------------------------------
-
-module functions 'modules/functions.bicep' = {
-  name: 'functions-${environment}'
-  params: {
-    environment: environment
-    location: location
-    tags: tags
-    mediaStorageAccountName: storage.outputs.storageAccountName
-    mediaStorageAccountKey: storage.outputs.storageAccountKey
-  }
-}
-
-// ---------------------------------------------------------------------------
 // Module: App Service
 // ---------------------------------------------------------------------------
 
@@ -117,8 +87,6 @@ module appService 'modules/app-service.bicep' = {
     tags: tags
     storageAccountName: storage.outputs.storageAccountName
     storageAccountKey: storage.outputs.storageAccountKey
-    cdnEndpointHostName: cdn.outputs.cdnEndpointHostName
-    functionAppHostName: functions.outputs.functionAppHostName
     postgresHost: postgresql.outputs.host
     postgresAdminUser: postgresAdminUser
     postgresAdminPassword: postgresAdminPassword
@@ -142,12 +110,11 @@ module staticWebApp 'modules/static-web-app.bicep' = {
 }
 
 // ---------------------------------------------------------------------------
-// Role Assignments — Storage Blob Data Contributor
+// Role Assignment — Storage Blob Data Contributor for API
 // ---------------------------------------------------------------------------
 
 var storageBlobDataContributorRole = 'ba92f5b4-2d11-453d-a403-e96b0029c9fe'
 
-// Use the known storage account name directly for the existing reference
 resource storageAccountRef 'Microsoft.Storage/storageAccounts@2023-05-01' existing = {
   name: storageAccountName
 }
@@ -162,24 +129,11 @@ resource apiStorageRoleAssignment 'Microsoft.Authorization/roleAssignments@2022-
   }
 }
 
-resource funcStorageRoleAssignment 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
-  name: guid(storageAccountName, 'func', storageBlobDataContributorRole)
-  scope: storageAccountRef
-  properties: {
-    principalId: functions.outputs.functionAppPrincipalId
-    principalType: 'ServicePrincipal'
-    roleDefinitionId: subscriptionResourceId('Microsoft.Authorization/roleDefinitions', storageBlobDataContributorRole)
-  }
-}
-
 // ---------------------------------------------------------------------------
 // Outputs
 // ---------------------------------------------------------------------------
 
 output apiUrl string = appService.outputs.apiUrl
-output apiStagingUrl string = appService.outputs.stagingUrl
 output staticWebAppUrl string = staticWebApp.outputs.staticWebAppUrl
-output cdnEndpointUrl string = cdn.outputs.cdnEndpointUrl
 output storageAccountName string = storage.outputs.storageAccountName
 output postgresHost string = postgresql.outputs.host
-output functionAppUrl string = functions.outputs.functionAppUrl
