@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { SignIn, SignUp } from '@clerk/clerk-react';
 import ProtectedRoute from '../components/auth/ProtectedRoute';
+import VolunteerRegisterPage from '../pages/VolunteerRegisterPage';
 
 // Placeholder page components
 function PlaceholderPage({ title }: { title: string }) {
@@ -34,11 +35,7 @@ export const router = createBrowserRouter([
   },
   {
     path: '/register/volunteer',
-    element: (
-      <AuthPage>
-        <SignUp routing="path" path="/register/volunteer" signInUrl="/login" />
-      </AuthPage>
-    ),
+    element: <VolunteerRegisterPage />,
   },
   {
     path: '/register/organization',

@@ -51,7 +51,7 @@ export default function ProfileStep({ onSubmit }: ProfileStepProps) {
             onChange={(e) => setDisplayName(e.target.value)}
             placeholder="How should we call you?"
             maxLength={100}
-            className="w-full rounded-lg border border-navy/20 bg-white px-4 py-3 font-body text-navy placeholder:text-navy/40 focus:border-coral focus:outline-none focus:ring-1 focus:ring-coral"
+            className="w-full rounded-lg border border-navy/20 bg-white px-4 py-3.5 font-body text-navy placeholder:text-navy/40 focus:border-coral focus:outline-none focus:ring-1 focus:ring-coral"
             required
           />
         </div>
@@ -68,7 +68,7 @@ export default function ProfileStep({ onSubmit }: ProfileStepProps) {
               onChange={(e) => setCity(e.target.value)}
               placeholder="City"
               maxLength={100}
-              className="w-full rounded-lg border border-navy/20 bg-white px-4 py-3 font-body text-navy placeholder:text-navy/40 focus:border-coral focus:outline-none focus:ring-1 focus:ring-coral"
+              className="w-full rounded-lg border border-navy/20 bg-white px-4 py-3.5 font-body text-navy placeholder:text-navy/40 focus:border-coral focus:outline-none focus:ring-1 focus:ring-coral"
               required
             />
           </div>
@@ -83,7 +83,7 @@ export default function ProfileStep({ onSubmit }: ProfileStepProps) {
               onChange={(e) => setState(e.target.value)}
               placeholder="ST"
               maxLength={50}
-              className="w-full rounded-lg border border-navy/20 bg-white px-4 py-3 font-body text-navy placeholder:text-navy/40 focus:border-coral focus:outline-none focus:ring-1 focus:ring-coral"
+              className="w-full rounded-lg border border-navy/20 bg-white px-4 py-3.5 font-body text-navy placeholder:text-navy/40 focus:border-coral focus:outline-none focus:ring-1 focus:ring-coral"
               required
             />
           </div>
