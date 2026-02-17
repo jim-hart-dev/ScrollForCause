@@ -86,11 +86,25 @@ public static class GetOrganizationDashboard
                 .Select(o => new { o.Id, o.Status })
                 .ToListAsync();
 
-            var allOrgOpportunityIds = allOrgOpportunities.Select(o => o.Id).ToList();
-            var activeOpportunityCount = allOrgOpportunities.Count(o => o.Status == "active");
+            var allOrgOpportunityIds = allOrgOpportunities.Select(o =>
+            {
+                return o.Id;
+            }).ToList();
+
+            var activeOpportunityCount = allOrgOpportunities.Count(o =>
+            {
+                return o.Status == "active";
+            });
+
             var activeOpportunityIds = allOrgOpportunities
-                .Where(o => o.Status == "active")
-                .Select(o => o.Id)
+                .Where(o =>
+                {
+                    return o.Status == "active";
+                })
+                .Select(o =>
+                {
+                    return o.Id;
+                })
                 .ToList();
 
             var newInterestCount = await db.VolunteerInterests
