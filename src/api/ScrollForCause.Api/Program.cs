@@ -8,6 +8,7 @@ using ScrollForCause.Api.Features.Moderation;
 using ScrollForCause.Api.Features.Opportunities;
 using ScrollForCause.Api.Features.Organizations;
 using ScrollForCause.Api.Features.Volunteers;
+using ScrollForCause.Api.Features.Feed;
 using ScrollForCause.Api.Features.Seed;
 using ScrollForCause.Api.Infrastructure.Auth;
 using ScrollForCause.Api.Infrastructure.Email;
@@ -92,6 +93,7 @@ app.MapGetOrganizationDetail();
 app.MapVerifyOrganization();
 app.MapGetOrganizationDashboard();
 app.MapCreateOpportunity();
+app.MapGetFeed();
 
 app.Run();
 
