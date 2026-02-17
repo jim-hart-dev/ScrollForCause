@@ -26,7 +26,7 @@ function AuthPage({ children }: { children: React.ReactNode }) {
 
 export const router = createBrowserRouter([
   // Public routes
-  { path: '/', element: <PlaceholderPage title="Feed" /> },
+  { path: '/', element: <PlaceholderPage title="FYP" /> },
   { path: '/explore', element: <PlaceholderPage title="Explore" /> },
   { path: '/org/:id', element: <PlaceholderPage title="Organization" /> },
 
