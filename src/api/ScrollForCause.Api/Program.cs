@@ -8,6 +8,7 @@ using ScrollForCause.Api.Features.Moderation;
 using ScrollForCause.Api.Features.Opportunities;
 using ScrollForCause.Api.Features.Organizations;
 using ScrollForCause.Api.Features.Volunteers;
+using ScrollForCause.Api.Features.Seed;
 using ScrollForCause.Api.Infrastructure.Auth;
 using ScrollForCause.Api.Infrastructure.Email;
 
@@ -62,6 +63,9 @@ builder.Services.AddSingleton<IEmailService, SendGridEmailService>();
 builder.Services.AddHealthChecks();
 
 var app = builder.Build();
+
+// Seed sample data (idempotent — skips if already seeded)
+await SeedData.InitializeAsync(app.Services);
 
 // Global exception handling
 app.UseMiddleware<GlobalExceptionHandler>();
