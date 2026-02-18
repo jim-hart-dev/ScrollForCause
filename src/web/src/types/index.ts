@@ -179,3 +179,40 @@ export interface CreateOpportunityResponse {
   opportunityId: string;
   status: string;
 }
+
+export interface FeedItem {
+  postId: string;
+  title: string;
+  description: string | null;
+  mediaType: 'video' | 'image';
+  createdAt: string;
+  media: FeedMediaInfo[];
+  organization: FeedOrganizationInfo;
+  opportunity: FeedOpportunityInfo | null;
+}
+
+export interface FeedMediaInfo {
+  id: string;
+  url: string;
+  thumbnailUrl: string | null;
+  duration: number | null;
+  width: number | null;
+  height: number | null;
+}
+
+export interface FeedOrganizationInfo {
+  id: string;
+  name: string;
+  logoUrl: string | null;
+  isVerified: boolean;
+}
+
+export interface FeedOpportunityInfo {
+  id: string;
+  title: string;
+  scheduleType: string;
+  startDate: string | null;
+  location: string | null;
+  isRemote: boolean;
+  timeCommitment: string | null;
+}
