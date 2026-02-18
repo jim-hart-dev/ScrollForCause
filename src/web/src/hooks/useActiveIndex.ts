@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, useCallback } from 'react';
 
 export function useActiveIndex() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [itemCount, setItemCount] = useState(0);
   const observerRef = useRef<IntersectionObserver | null>(null);
   const itemRefs = useRef<Map<number, HTMLDivElement>>(new Map());
 
@@ -11,6 +12,7 @@ export function useActiveIndex() {
     } else {
       itemRefs.current.delete(index);
     }
+    setItemCount(itemRefs.current.size);
   }, []);
 
   useEffect(() => {
@@ -34,7 +36,7 @@ export function useActiveIndex() {
     }
 
     return () => observer.disconnect();
-  }, [itemRefs.current.size]);
+  }, [itemCount]);
 
   return { activeIndex, setItemRef };
 }
